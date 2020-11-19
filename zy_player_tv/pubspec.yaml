@@ -24,6 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  #播放器
+  fijkplayer: ^0.8.7
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
