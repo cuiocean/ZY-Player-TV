@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'pages/player_page.dart';
+import 'pages/home_screen_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,9 +21,7 @@ class _MyAppState extends State<MyApp> {
         accentColor: Color(0xFFFFC107),
         dividerColor: Color(0xFFBDBDBD),
       ),
-      home: PlayerScreen(
-        url: 'https://e.mahua-kb.com/20200903/R8DGalto/index.m3u8',
-      ),
+      home: HomeScreen(),
     );
   }
 }
