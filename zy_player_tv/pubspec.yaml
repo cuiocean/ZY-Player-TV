@@ -24,6 +24,10 @@ dependencies:
   flutter:
     sdk: flutter
 
+  dio: ^3.0.10
+  xml2json: ^4.4.0
+  http: ^0.12.2
+  equatable: ^1.2.5
   #播放器
   fijkplayer: ^0.8.7
 
