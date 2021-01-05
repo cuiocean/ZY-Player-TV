@@ -3,9 +3,11 @@ import 'package:zy_player_tv/data/models/class_result_model.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:xml2json/xml2json.dart';
+import 'package:zy_player_tv/data/models/page_result_model.dart';
 
 abstract class MovieRemoteDataSource {
   Future<List<ClassModel>> getClassList(String url);
+  Future<PageResultModel> getPageInfo(String url, int tid);
 }
 
 class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
@@ -20,5 +22,14 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
     var parsedData = _xml2json.toGData();
     return ClassResultModel.fromJson(jsonDecode(parsedData)['rss']['class'])
         .classModels;
+  }
+
+  @override
+  Future<PageResultModel> getPageInfo(String url, int tid) async {
+    var internalUrl = url + '?ac=videolist&t=' + tid.toString();
+    var response = await http.get(internalUrl);
+    _xml2json.parse(response.body);
+    var parsedData = _xml2json.toGData();
+    return PageResultModel.fromJson(jsonDecode(parsedData)['rss']['list']);
   }
 }
