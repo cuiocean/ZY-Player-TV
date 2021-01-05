@@ -11,6 +11,7 @@ abstract class MovieRemoteDataSource {
   Future<List<ClassModel>> getClassList(String url);
   Future<PageResultModel> getPageInfo(String url, int tid);
   Future<List<Video>> getVideoList(String url, int tid, int pg);
+  Future<Video> getVideoDetail(String url, int ids);
 }
 
 class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
@@ -43,5 +44,14 @@ class MovieRemoteDataSourceImpl extends MovieRemoteDataSource {
     _xml2json.parse(response.body);
     var parsedData = _xml2json.toGData();
     return VideoResultModel.fromJson(jsonDecode(parsedData)['rss']['list']).videoList;
+  }
+
+  @override
+  Future<Video> getVideoDetail(String url, int ids) async{
+    var internalUrl = url + '?ac=videolist&ids=' + ids.toString();
+    var response = await http.get(internalUrl);
+    _xml2json.parse(response.body);
+    var parsedData = _xml2json.toGData();
+    return Video.fromJson(jsonDecode(parsedData)['rss']['list']['video']);
   }
 }

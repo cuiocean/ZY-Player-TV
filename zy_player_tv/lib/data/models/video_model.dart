@@ -45,8 +45,7 @@ class Video {
     state = json['state'] != null ? new Last.fromJson(json['state']) : null;
     note = json['note'] != null ? new Name.fromJson(json['note']) : null;
     actor = json['actor'] != null ? new Name.fromJson(json['actor']) : null;
-    director =
-    json['director'] != null ? new Name.fromJson(json['director']) : null;
+    director = json['director'] != null ? new Name.fromJson(json['director']) : null;
     dl = json['dl'] != null ? new Dl.fromJson(json['dl']) : null;
     des = json['des'] != null ? new Name.fromJson(json['des']) : null;
   }
